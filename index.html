@@ -1,21 +1,16 @@
 {% extends 'base.html' %}
 
+{% block title %}Home - GRAMSETU ( A Complaint Tracker ) {% endblock %}
+
 {% block content %}
-   <nav>
-        <!-- <a href="/templates/user/dashboard.html">User Dashboard</a> -->
-        <a href="/templates/admin/login.html" class="button">Admin Login</a>
-        <a href="/templates/login.html" class="button">User Login</a>
-        <a href="/templates/register.html" class="button">Register</a>
-        <a href="#" class="button">English/Hindi</a>
-    </nav><hr>
 
 
-  <div class="pic">
-        <img src="/static/images/WhatsApp Image 2025-08-25 at 18.13.08_8561c190.jpg" alt="Village Photo" width="1000" height="570">
-  </div>
-
-  
-  <div class="about">
-    <h1>About GramSetu</h1><br>
-        <p>This is a digital grievance redressal application that makes it easier for rural citizens to raise their concerns and for Panchayat officials to resolve them efficiently. Villagers can submit complaints using a simple form, with the option to add photos or audio for clarity. Once submitted, every complaint is officially recorded, categorized, and tracked in real-time so citizens always know the status of their issue. The system enforces time-bound resolution, with automatic escalation if deadlines are missed, ensuring accountability from officials. To maintain transparency, a public complaint register is available for all to view, while Panchayat staff and leaders get an analytics dashboard that highlights recurring problems, performance trends, and systemic gaps. With its simple user interface designed for low-tech users, the app bridges the gap between citizens and local governance, fostering trust, transparency, and more effective problem-solving in villages.</p></div><br>
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">GramSetu </h1>
+      <p class="col-md-8 fs-4"><b>Bridging Citizens and Governance, One Complaint at a Time</b>. Please log in to view your dashboard or register a new account.</p>
+      <a href="{{ url_for('user_bp.login') }}" class="btn btn-primary btn-lg" type="button">Login</a>
+      <a href="{{ url_for('user_bp.register') }}" class="btn btn-secondary btn-lg" type="button">Register</a>
+    </div>
+</div>
 {% endblock %}
