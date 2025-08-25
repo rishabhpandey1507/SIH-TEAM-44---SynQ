@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="complaint-section">
+            <h2>Submit Your Complaint</h2>
+            <form action="/submit_complaint" method="post" enctype="multipart/form-data">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" required></textarea><br>
+
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="">--Select--</option>
+                    <option value="water">Water Supply</option>
+                    <option value="electricity">Electricity</option>
+                    <option value="road">Road / Infrastructure</option>
+                    <option value="health">Health & Sanitation</option>
+                    <option value="other">Other</option>
+                </select><br>
+
+                <label for="details">Complaint Details:</label>
+                <textarea id="details" name="details" required></textarea><br>
+
+                <label for="file">Attach File (optional):</label>
+                <input type="file" id="file" name="file"><br>
+
+                <button type="submit" class="button">Submit Complaint</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section class="track-section">
+            <h2>Track Your Complaint</h2>
+            <form action="/track_complaint" method="get">
+                <label for="complaint_id">Enter Complaint ID:</label>
+                <input type="text" id="complaint_id" name="complaint_id" required>
+                <button type="submit" class="button">Track</button>
+            </form>
+            <!-- After backend integration, status will be displayed here -->
+            <div id="status">
+                <p>Status will be shown here after tracking...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="contact">
+            <h4>Contact Us</h4>
+            <p>abc@gmail.com</p>
+            <p>+91 885-0088-4444</p>
+        </div>
+        <div class="location">
+            <p>Made in India</p>
+        </div>
+        <div class="copy">
+            <p>&copy; 2025 Gram Setu</p>
+        </div>
+    </footer>
+</body>
+</html>
+👉 You can save this as complaint.html in your templates/ folder.
+👉 Backend routes in Flask (/submit_complaint and /track_complaint) will handle form submission and tracking.
+
+Do you want me to also create the Flask backend code (Python) for handling complaint submission & tracking (storing in CSV/DB)?
+
+
+
+
+
+
+
+You said:
+create a html for admin dashboard
+
+
+ChatGPT said:
+Perfect ✅.
+Let’s create an Admin Dashboard HTML page (say admin_dashboard.html) for your GramSetu project.
+
+This page will let the admin:
+
+View complaints list (ID, user name, category, status, date).
+
+Change complaint status (Pending, In Progress, Resolved).
+
+Search or filter complaints.
+
+Logout option.
+
+Here’s the HTML code:
+
+html
+Copy
+Edit
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - GramSetu</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="head">
+            <img src="/static/images/Screenshot 2025-08-25 165823.png" alt="GramSetu Logo" width="80" height="100">
+            <div class="head1"><h1>GramSetu - Admin Dashboard</h1></div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="/" class="button">Home</a>
+        <a href="/templates/admin/dashboard.html" class="button">Dashboard</a>
+        <a href="/templates/admin/manage_users.html" class="button">Manage Users</a>
+        <a href="/logout" class="button">Logout</a>
+    </nav><hr>
+
+    <main>
+        <section class="admin-section">
+            <h2>All Complaints</h2>
+
+            <!-- Search & Filter -->
+            <form action="/admin/search" method="get" class="search-bar">
+                <input type="text" name="query" placeholder="Search by ID, Name, or Category">
+                <select name="status">
+                    <option value="">--Filter by Status--</option>
+                    <option value="pending">Pending</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="resolved">Resolved</option>
+                </select>
+                <button type="submit" class="button">Search</button>
+            </form>
+
+            <!-- Complaints Table -->
+            <table border="1" width="100%" cellpadding="8" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Category</th>
+                        <th>Details</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example rows (dynamic with backend) -->
+                    <tr>
+                        <td>101</td>
+                        <td>Ramesh Kumar</td>
+                        <td>Water Supply</td>
+                        <td>Pipeline broken near temple</td>
+                        <td>25-08-2025</td>
+                        <td><span class="status pending">Pending</span></td>
+                        <td>
+                            <form action="/admin/update_status" method="post">
+                                <input type="hidden" name="complaint_id" value="101">
+                                <select name="status">
+                                    <option value="pending">Pending</option>
+                                    <option value="in_progress">In Progress</option>
+                                    <option value="resolved">Resolved</option>
+                                </select>
+                                <button type="submit" class="button">Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>102</td>
+                        <td>Sita Devi</td>
+                        <td>Electricity</td>
+                        <td>Street lights not working</td>
+                        <td>24-08-2025</td>
+                        <td><span class="status in-progress">In Progress</span></td>
+                        <td>
+                            <form action="/admin/update_status" method="post">
+                                <input type="hidden" name="complaint_id" value="102">
+                                <select name="status">
+                                    <option value="pending">Pending</option>
+                                    <option value="in_progress" selected>In Progress</option>
+                                    <option value="resolved">Resolved</option>
+                                </select>
+                                <button type="submit" class="button">Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    {% endblock %}
