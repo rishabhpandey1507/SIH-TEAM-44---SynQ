@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Your Complaint Dashboard</h2>
+    <a href="{{ url_for('user_bp.submit_complaint') }}" class="btn btn-success">Submit New Complaint</a>
+</div>
+
+<table class="table table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Status</th>
+        <th scope="col">Date Submitted</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <th scope="row">1</th>
+        <td>Internet not working</td>
+        <td><span class="badge bg-warning text-dark">In Progress</span></td>
+        <td>2025-08-24</td>
+        <td><a href="#" class="btn btn-sm btn-info">View</a></td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Leaky faucet in kitchen</td>
+        <td><span class="badge bg-success">Resolved</span></td>
+        <td>2025-08-22</td>
+        <td><a href="#" class="btn btn-sm btn-info">View</a></td>
+      </tr>
+      </tbody>
+</table>
+{% endblock %}

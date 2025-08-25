@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Submit Complaint{% endblock %}
+
+{% block content %}
+<h2>Submit a New Complaint</h2>
+<hr>
+<form method="POST" action="">
+    <div class="mb-3">
+        <label for="title" class="form-label">Complaint Title</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="e.g., WiFi is slow" required>
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Detailed Description</label>
+        <textarea class="form-control" id="description" name="description" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Complaint</button>
+</form>
+{% endblock %}
