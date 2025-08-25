@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Complaint History{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Your Full Complaint History</h2>
+    <a href="{{ url_for('user_bp.submit_complaint') }}" class="btn btn-success">Submit New Complaint</a>
+</div>
+
+{% if complaints %}
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Ticket ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Status</th>
+            <th scope="col">Date Submitted</th>
+            <th scope="col">Last Updated</th>
+            <th scope="col">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for complaint in complaints %}
+            <tr>
+                <th scope="row">#{{ complaint.id }}</th>
+                <td>{{ complaint.title }}</td>
+                <td>
+                    {% if complaint.status == 'Resolved' %}
+                        <span class="badge bg-success">{{ complaint.status }}</span>
+                    {% elif complaint.status == 'In Progress' %}
+                        <span class="badge bg-warning text-dark">{{ complaint.status }}</span>
+                    {% else %}
+                        <span class="badge bg-secondary">{{ complaint.status }}</span>
+                    {% endif %}
+                </td>
+                <td>{{ complaint.created_at }}</td>
+                <td>{{ complaint.updated_at }}</td>
+                <td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
+            </tr>
+            {% endfor %}
+
+            <tr>
+                <th scope="row">#003</th>
+                <td>Faulty street light</td>
+                <td><span class="badge bg-secondary">Pending</span></td>
+                <td>2025-08-25</td>
+                <td>2025-08-25</td>
+                <td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
+            </tr>
+            <tr>
+                <th scope="row">#002</th>
+                <td>Internet not working</td>
+                <td><span class="badge bg-warning text-dark">In Progress</span></td>
+                <td>2025-08-24</td>
+                <td>2025-08-24</td>
+                <td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
+            </tr>
+             <tr>
+                <th scope="row">#001</th>
+                <td>Leaky faucet in kitchen</td>
+                <td><span class="badge bg-success">Resolved</span></td>
+                <td>2025-08-22</td>
+                <td>2025-08-23</td>
+                <td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% else %}
+<div class="alert alert-info" role="alert">
+    <h4 class="alert-heading">No Complaints Found!</h4>
+    <p>It looks like you haven't submitted any complaints yet. When you do, they will all appear here for you to track.</p>
+    <hr>
+    <p class="mb-0">You can get started by submitting your first complaint.</p>
+</div>
+{% endif %}
+
+{% endblock %}

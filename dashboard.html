@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <section class="complaint-section">
+            <h2>Submit Your Complaint</h2>
+            <form action="/submit_complaint" method="post" enctype="multipart/form-data">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" required></textarea><br>
+
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="">--Select--</option>
+                    <option value="water">Water Supply</option>
+                    <option value="electricity">Electricity</option>
+                    <option value="road">Road / Infrastructure</option>
+                    <option value="health">Health & Sanitation</option>
+                    <option value="other">Other</option>
+                </select><br>
+
+                <label for="details">Complaint Details:</label>
+                <textarea id="details" name="details" required></textarea><br>
+
+                <label for="file">Attach File (optional):</label>
+                <input type="file" id="file" name="file"><br>
+
+                <button type="submit" class="button">Submit Complaint</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section class="track-section">
+            <h2>Track Your Complaint</h2>
+            <form action="/track_complaint" method="get">
+                <label for="complaint_id">Enter Complaint ID:</label>
+                <input type="text" id="complaint_id" name="complaint_id" required>
+                <button type="submit" class="button">Track</button>
+            </form>
+            <!-- After backend integration, status will be displayed here -->
+            <div id="status">
+                <p>Status will be shown here after tracking...</p>
+            </div>
+        </section>
+
+{% endblock %}
